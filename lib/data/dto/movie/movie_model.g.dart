@@ -1,0 +1,28 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'movie_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      description: json['description'] as String,
+      poster: json['poster'] as String,
+      release: json['release'] as String,
+      genres: (json['genres'] as List<dynamic>)
+          .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'poster': instance.poster,
+      'description': instance.description,
+      'release': instance.release,
+      'genres': instance.genres,
+    };
