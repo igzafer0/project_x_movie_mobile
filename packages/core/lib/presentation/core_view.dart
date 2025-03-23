@@ -8,12 +8,11 @@ base class CoreView<T extends Store> extends StatefulWidget {
   final VoidCallback? onDispose;
 
   const CoreView(
-      {Key? key,
+      {super.key,
       required this.viewModel,
       required this.onPageBuilder,
       required this.onModelReady,
-      this.onDispose})
-      : super(key: key);
+      this.onDispose});
 
   @override
   State<CoreView> createState() => _CoreViewState<T>();

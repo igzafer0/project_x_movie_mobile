@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_x_movie_mobile/config/theme/theme_manager.dart';
-import 'package:project_x_movie_mobile/util/constant/color_constant.dart';
-import 'package:project_x_movie_mobile/util/constant/common_constant.dart';
+import 'package:core/constant/color_constant.dart';
+import 'package:core/constant/common_constant.dart';
 
 class DarkTheme extends ThemeManager {
   static DarkTheme? _instance;

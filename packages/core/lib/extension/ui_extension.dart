@@ -1,12 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:core/enum/text_size.dart';
 import 'package:flutter/material.dart';
-import 'package:project_x_movie_mobile/provider/theme_provider.dart';
-import 'package:project_x_movie_mobile/util/enum/text_size.dart';
-import 'package:provider/provider.dart';
 
 extension ThemeExtension on BuildContext {
-  ThemeData get theme => watch<ThemeNotifier>().currentTheme;
+  ThemeData get theme => Theme.of(this);
   ColorScheme get colors => theme.colorScheme;
   TextTheme get textTheme => theme.textTheme;
 }
