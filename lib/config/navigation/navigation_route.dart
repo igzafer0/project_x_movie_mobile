@@ -1,5 +1,5 @@
+import 'package:dashboard/page/test.dart';
 import 'package:flutter/material.dart';
-import 'package:project_x_movie_mobile/presentation/view/home/view/home_view.dart';
 import 'package:project_x_movie_mobile/util/constant/navigation_constant.dart';
 
 class NavigationRoute {
@@ -7,7 +7,7 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     return switch (args.name) {
       NavigationConstant.DEFAULT =>
-        normalNavigate(const HomeView(), NavigationConstant.DEFAULT),
+        normalNavigate(const DashboardPage(), NavigationConstant.DEFAULT),
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
     };
   }
