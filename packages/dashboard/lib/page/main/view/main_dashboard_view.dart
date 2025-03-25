@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
+import 'package:dashboard/page/main/section/genre_list_section.dart';
 import 'package:dashboard/page/main/section/movie_list_section.dart';
 import 'package:dashboard/page/main/viewmodel/main_dashboard_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,8 @@ class _MainDashboardViewState extends State<MainDashboardView> {
           Gap(context.MidSpacer),
           _randomMovieWithCategoryTitlePart(),
           Gap(context.LargeSpacer),
+          _genrePart(),
+          Gap(context.LargeSpacer),
           _randomMovieCategoryPriorityPart(),
           Gap(context.DoubleLargeSpacer),
         ],
@@ -57,15 +60,13 @@ class _MainDashboardViewState extends State<MainDashboardView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GlobalLabelTextWidget(
-                text:
-                    "${viewModel.randomMovieWithCategoryPartList.first.genres.last.name} Movies",
+                text: "${viewModel.randomMovieWithCategoryPartList.first.genres.last.name} Movies",
                 size: TextSize.BIG_TITLE,
               ),
               Gap(context.MidSpacer),
               SizedBox(
                 height: 200,
-                child:
-                    MovieListSection(viewModel.randomMovieWithCategoryPartList),
+                child: MovieListSection(viewModel.randomMovieWithCategoryPartList),
               ),
             ],
           ),
@@ -84,13 +85,21 @@ class _MainDashboardViewState extends State<MainDashboardView> {
     });
   }
 
+  _genrePart() {
+    return Observer(builder: (_) {
+      if (viewModel.genreList.isNotEmpty) {
+        return SizedBox(height: 100, child: GenreListSection(viewModel.genreList));
+      }
+      return const SizedBox.shrink();
+    });
+  }
+
   _randomMovieCategoryPriorityPart() {
     return Observer(builder: (_) {
       if (viewModel.categoryPriorityMoviePart.id != -1) {
         return Padding(
           padding: context.MidHorizontalSpacer,
-          child: MovieCategoryPriorityWidget(
-              movie: viewModel.categoryPriorityMoviePart),
+          child: MovieCategoryPriorityWidget(movie: viewModel.categoryPriorityMoviePart),
         );
       }
       return const SizedBox.shrink();

@@ -13,6 +13,8 @@ dependencies:
 
   core:
     path: packages/core
+  genre:
+    path: packages/genre
   movie:
     path: packages/movie
   dashboard:

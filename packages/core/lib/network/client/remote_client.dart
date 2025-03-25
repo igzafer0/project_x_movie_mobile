@@ -11,7 +11,7 @@ class RemoteClient {
         connectTimeout: const Duration(seconds: 5),
         sendTimeout: const Duration(seconds: 5),
         receiveTimeout: const Duration(seconds: 5),
-        baseUrl: "http://movie.zafercetin.dev",
+        baseUrl: "https://movie.zafercetin.dev",
       ),
     );
     return RemoteClient._internal(client);

@@ -1,4 +1,8 @@
 import 'package:core/core.dart';
+import 'package:genre/data/impl/genre_repository_impl.dart';
+import 'package:genre/data/repository/genre_repository.dart';
+import 'package:genre/data/source/genre_remote_data_source.dart';
+import 'package:genre/data/usecase/genre_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie/data/impl/movie_repository_impl.dart';
 import 'package:movie/data/repository/movie_repository.dart';
@@ -21,6 +25,14 @@ void init() {
     () => MovieRepositoryImpl(locator()),
   );
   locator.registerLazySingleton(() => MovieUseCase(locator()));
+
+  locator.registerLazySingleton<GenreRemoteDataSource>(
+    () => GenreRemoteDataSourceImpl(remote: locator()),
+  );
+  locator.registerLazySingleton<GenreRepository>(
+    () => GenreRepositoryImpl(locator()),
+  );
+  locator.registerLazySingleton(() => GenreUseCase(locator()));
 
   // locator.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl());
   // locator.registerLazySingleton<MovieRemoteDataSource>(

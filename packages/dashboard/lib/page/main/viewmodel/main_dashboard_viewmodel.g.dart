@@ -27,6 +27,22 @@ mixin _$MainDashboardViewModel on _MainDashboardViewModelBase, Store {
     });
   }
 
+  late final _$genreListAtom =
+      Atom(name: '_MainDashboardViewModelBase.genreList', context: context);
+
+  @override
+  List<GenreModel> get genreList {
+    _$genreListAtom.reportRead();
+    return super.genreList;
+  }
+
+  @override
+  set genreList(List<GenreModel> value) {
+    _$genreListAtom.reportWrite(value, super.genreList, () {
+      super.genreList = value;
+    });
+  }
+
   late final _$firstMoviePartAtom = Atom(
       name: '_MainDashboardViewModelBase.firstMoviePart', context: context);
 
@@ -75,6 +91,7 @@ mixin _$MainDashboardViewModel on _MainDashboardViewModelBase, Store {
   String toString() {
     return '''
 randomMovieWithCategoryPartList: ${randomMovieWithCategoryPartList},
+genreList: ${genreList},
 firstMoviePart: ${firstMoviePart},
 categoryPriorityMoviePart: ${categoryPriorityMoviePart}
     ''';

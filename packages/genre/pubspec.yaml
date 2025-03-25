@@ -1,4 +1,4 @@
-name: movie
+name: genre
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
@@ -11,17 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   core:
     path: ../core
-  genre:
-    path: ../genre
 
-  dio: ^5.3.3
   json_serializable: ^6.6.1
   json_annotation: ^4.8.1
   gap: ^3.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

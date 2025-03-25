@@ -270,6 +270,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  genre:
+    dependency: "direct main"
+    description:
+      path: "packages/genre"
+      relative: true
+    source: path
+    version: "0.0.1"
   get_it:
     dependency: "direct main"
     description:
