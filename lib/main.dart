@@ -29,10 +29,7 @@ class ProjectXMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: (c, x) {
-        return MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(textScaler: TextScaler.noScaling),
-            child: x!);
+        return MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling), child: x!);
       },
       debugShowCheckedModeBanner: false,
       onGenerateRoute: locator.get<NavigationRoute>().generateRoute,

@@ -60,7 +60,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GlobalLabelTextWidget(
-                text: "${viewModel.randomMovieWithCategoryPartList.first.genres.last.name} Movies",
+                text: "${viewModel.randomMovieWithCategoryPartList.last.genres.first.name} Movies",
                 size: TextSize.BIG_TITLE,
               ),
               Gap(context.MidSpacer),
@@ -88,7 +88,20 @@ class _MainDashboardViewState extends State<MainDashboardView> {
   _genrePart() {
     return Observer(builder: (_) {
       if (viewModel.genreList.isNotEmpty) {
-        return SizedBox(height: 100, child: GenreListSection(viewModel.genreList));
+        return Padding(
+          padding: context.MidHorizontalSpacer,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GlobalLabelTextWidget(
+                text: "Genres",
+                size: TextSize.BIG_TITLE,
+              ),
+              Gap(context.MidSpacer),
+              SizedBox(height: 100, child: GenreListSection(viewModel.genreList)),
+            ],
+          ),
+        );
       }
       return const SizedBox.shrink();
     });
