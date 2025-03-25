@@ -12,6 +12,7 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       description: json['description'] as String,
       poster: json['poster'] as String,
       release: json['release'] as String,
+      adult: json['adult'] as bool,
       genres: (json['genres'] as List<dynamic>)
           .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -24,5 +25,6 @@ Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
       'poster': instance.poster,
       'description': instance.description,
       'release': instance.release,
+      'adult': instance.adult,
       'genres': instance.genres,
     };

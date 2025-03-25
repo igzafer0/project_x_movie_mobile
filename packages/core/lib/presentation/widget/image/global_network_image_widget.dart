@@ -18,8 +18,7 @@ class GlobalNetworkImageWidget extends StatelessWidget {
           alignment: Alignment.topCenter,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            return Image.network(imagePath, fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
+            return Image.network(imagePath, fit: BoxFit.cover, errorBuilder: (context, error, stackTrace) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: ColorConstant.APP_ORANGE,

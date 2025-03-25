@@ -10,12 +10,16 @@ class MovieListSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: movies.length,
-        itemBuilder: (context, index) {
-          return Container(
-              margin: context.MidRightSpacer,
-              child: MovieTileWidget(imagePath: movies[index].poster));
-        });
+      scrollDirection: Axis.horizontal,
+      itemCount: movies.length,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: context.MidRightSpacer,
+          child: MovieTileWidget(
+            movie: movies[index],
+          ),
+        );
+      },
+    );
   }
 }

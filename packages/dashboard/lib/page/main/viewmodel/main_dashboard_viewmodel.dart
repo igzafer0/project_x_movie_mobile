@@ -35,9 +35,25 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
   @observable
   List<GenreModel> genreList = [];
   @observable
-  MovieModel firstMoviePart = MovieModel(id: -1, name: "", description: "", poster: "", release: "", genres: []);
+  MovieModel firstMoviePart = MovieModel(
+    id: -1,
+    name: "",
+    description: "",
+    poster: "",
+    release: "",
+    genres: [],
+    adult: false,
+  );
   @observable
-  MovieModel categoryPriorityMoviePart = MovieModel(id: -1, name: "", description: "", poster: "", release: "", genres: []);
+  MovieModel categoryPriorityMoviePart = MovieModel(
+    id: -1,
+    name: "",
+    description: "",
+    poster: "",
+    release: "",
+    genres: [],
+    adult: false,
+  );
   @action
   Future<void> _getRandomMovieWithCategoryPart() async {
     var result = await movieUseCase.repository.random(10, []);
@@ -55,6 +71,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
             poster: "",
             release: "",
             genres: [],
+            adult: false,
           );
     }
   }
@@ -62,15 +79,8 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
   Future<void> _getRandomMovieCategoryPriorityPart() async {
     var result = await movieUseCase.repository.random(1, []);
     if (result.status) {
-      categoryPriorityMoviePart = result.data?.first ??
-          MovieModel(
-            id: -1,
-            name: "",
-            description: "",
-            poster: "",
-            release: "",
-            genres: [],
-          );
+      categoryPriorityMoviePart =
+          result.data?.first ?? MovieModel(id: -1, name: "", description: "", poster: "", release: "", genres: [], adult: false);
     }
   }
 

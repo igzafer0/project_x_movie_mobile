@@ -16,15 +16,13 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GlobalLabelTextWidget(
-            text: movie.genres.last.id.movieGenreText(),
-            size: TextSize.BIG_TITLE),
+        GlobalLabelTextWidget(text: movie.genres.last.id.movieGenreText(), size: TextSize.BIG_TITLE),
         Gap(context.MidSpacer),
         Row(
           children: [
             SizedBox(
               height: 150,
-              child: MovieTileWidget(imagePath: movie.poster),
+              child: MovieTileWidget(movie: movie),
             ),
             Gap(context.MidSpacer),
             Expanded(
@@ -33,8 +31,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
                 children: [
                   GlobalLabelTextWidget(text: movie.name, size: TextSize.TITLE),
                   Gap(context.SmallSpacer),
-                  GlobalLabelTextWidget(
-                      text: movie.release, size: TextSize.SUBTITLE),
+                  GlobalLabelTextWidget(text: movie.release, size: TextSize.SUBTITLE),
                 ],
               ),
             ),
@@ -47,9 +44,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
           color: ColorConstant.SECONDARY_TEXT_COLOR,
         ),
         Gap(context.MidSpacer),
-        SizedBox(
-            width: context.ScreenWidth * .9,
-            child: GlobalCommonButtonWidget(onTap: () {}, title: "See details"))
+        SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () {}, title: "See details"))
       ],
     );
   }

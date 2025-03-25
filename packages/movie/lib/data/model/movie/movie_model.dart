@@ -15,6 +15,8 @@ final class MovieModel {
   String description;
   @JsonKey(name: "release")
   String release;
+  @JsonKey(name: "adult")
+  bool adult;
   @JsonKey(name: "genres")
   List<GenreModel> genres;
 
@@ -24,11 +26,11 @@ final class MovieModel {
     required this.description,
     required this.poster,
     required this.release,
+    required this.adult,
     required this.genres,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) =>
-      _$MovieModelFromJson(json);
+  factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieModelToJson(this);
 
