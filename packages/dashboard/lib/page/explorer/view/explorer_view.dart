@@ -32,8 +32,8 @@ class _ExplorerViewState extends State<ExplorerView> {
     );
   }
 
-  final int columns = 10;
-  final int rows = 10;
+  final int columns = 11;
+  final int rows = 11;
   final double spacing = 4;
   final double posterHeight = 200;
   final TransformationController _transformationController = TransformationController();
@@ -44,7 +44,6 @@ class _ExplorerViewState extends State<ExplorerView> {
         if (viewModel.randomMovieWithCategoryPartList.isNotEmpty) {
           final double posterWidth = posterHeight * (133 / 200);
           final size = MediaQuery.of(context).size;
-
           final double gridWidth = (posterWidth * columns) + ((columns - 1) * spacing);
           final double gridHeight = (posterHeight * rows) + ((rows - 1) * spacing);
           final dx = (gridWidth - size.width) / 2;

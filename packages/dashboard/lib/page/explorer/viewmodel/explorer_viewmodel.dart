@@ -26,7 +26,7 @@ abstract class _ExplorerViewModelBase with Store, CoreViewModel {
   List<MovieModel> randomMovieWithCategoryPartList = [];
   @action
   Future<void> _getRandomMovieWithCategoryPart() async {
-    var result = await movieUseCase.repository.random(100, []);
+    var result = await movieUseCase.repository.random(121, []);
     if (result.status) randomMovieWithCategoryPartList = result.data ?? [];
     debugPrint("test ${randomMovieWithCategoryPartList.length}");
   }
