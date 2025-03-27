@@ -17,7 +17,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GlobalLabelTextWidget(text: movie.genres.last.id.movieGenreText(), size: TextSize.BIG_TITLE),
-        Gap(context.MidSpacer),
+        Gap(context.LargeSpacer),
         Row(
           children: [
             SizedBox(

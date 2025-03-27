@@ -4,6 +4,7 @@ import 'package:core/extension/ui_extension.dart';
 import 'package:dashboard/page/main/section/genre_list_section.dart';
 import 'package:dashboard/page/main/section/movie_list_section.dart';
 import 'package:dashboard/page/main/viewmodel/main_dashboard_viewmodel.dart';
+import 'package:dashboard/page/main/widget/backgrounded_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -39,10 +40,11 @@ class _MainDashboardViewState extends State<MainDashboardView> {
         padding: EdgeInsets.zero,
         children: [
           _firstMoviePart(),
-          Gap(context.MidSpacer),
-          _randomMovieWithCategoryTitlePart(),
-          Gap(context.LargeSpacer),
           _genrePart(),
+          Gap(context.LargeSpacer),
+          BackgroundedTextField(),
+          Gap(context.LargeSpacer),
+          _randomMovieWithCategoryTitlePart(),
           Gap(context.LargeSpacer),
           _randomMovieCategoryPriorityPart(),
           Gap(context.DoubleLargeSpacer),
@@ -63,7 +65,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
                 text: "${viewModel.randomMovieWithCategoryPartList.last.genres.first.name} Movies",
                 size: TextSize.BIG_TITLE,
               ),
-              Gap(context.MidSpacer),
+              Gap(context.LargeSpacer),
               SizedBox(
                 height: 200,
                 child: MovieListSection(viewModel.randomMovieWithCategoryPartList),
@@ -97,7 +99,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
                 text: "Genres",
                 size: TextSize.BIG_TITLE,
               ),
-              Gap(context.MidSpacer),
+              Gap(context.LargeSpacer),
               SizedBox(height: 100, child: GenreListSection(viewModel.genreList)),
             ],
           ),

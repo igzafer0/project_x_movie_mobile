@@ -26,11 +26,24 @@ class MovieHeaderWidget extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.transparent,
+                  ColorConstant.PRIMARY_COLOR.withValues(alpha: .1),
+                  ColorConstant.PRIMARY_COLOR,
+                ],
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  ColorConstant.PRIMARY_COLOR.withValues(alpha: .5),
+                  ColorConstant.PRIMARY_COLOR.withValues(alpha: .1),
                   ColorConstant.PRIMARY_COLOR,
                 ],
               ),
@@ -50,10 +63,7 @@ class MovieHeaderWidget extends StatelessWidget {
                   ),
                 ),
                 Gap(context.MidSpacer),
-                SizedBox(
-                    width: context.ScreenWidth * .9,
-                    child: GlobalCommonButtonWidget(
-                        onTap: () {}, title: "See details"))
+                SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () {}, title: "See details"))
               ],
             ),
           ),
