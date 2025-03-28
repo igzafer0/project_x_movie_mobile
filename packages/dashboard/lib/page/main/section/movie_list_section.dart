@@ -5,7 +5,8 @@ import 'package:movie/widget/movie_tile_widget.dart';
 
 class MovieListSection extends StatelessWidget {
   final List<MovieModel> movies;
-  const MovieListSection(this.movies, {super.key});
+  final Function(int) onTap;
+  const MovieListSection(this.movies, this.onTap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class MovieListSection extends StatelessWidget {
         return Container(
           margin: context.MidRightSpacer,
           child: MovieTileWidget(
+            onTap: () => onTap(movies[index].id),
             movie: movies[index],
           ),
         );

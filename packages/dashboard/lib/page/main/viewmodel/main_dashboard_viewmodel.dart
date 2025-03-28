@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 import 'package:movie/data/usecase/movie_usecase.dart';
+import 'package:project_x_movie_mobile/util/constant/navigation_constant.dart';
 
 part 'main_dashboard_viewmodel.g.dart';
 
@@ -28,6 +29,10 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
   @override
   void setContext(BuildContext context) {
     viewModelContext = context;
+  }
+
+  navigateDetailPage(int movieID) {
+    navigator.navigateToPage(path: NavigationConstant.MOVIE_DETAIL, data: movieID);
   }
 
   @observable

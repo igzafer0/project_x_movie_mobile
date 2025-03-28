@@ -68,7 +68,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
               Gap(context.LargeSpacer),
               SizedBox(
                 height: 200,
-                child: MovieListSection(viewModel.randomMovieWithCategoryPartList),
+                child: MovieListSection(viewModel.randomMovieWithCategoryPartList, (i) => viewModel.navigateDetailPage(i)),
               ),
             ],
           ),

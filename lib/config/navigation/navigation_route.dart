@@ -8,7 +8,7 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     return switch (args.name) {
       NavigationConstant.DEFAULT => normalNavigate(const MainDashboardView(), NavigationConstant.DEFAULT),
-      NavigationConstant.MOVIE_DETAIL => normalNavigate(const MovieDetailPageView(), NavigationConstant.MOVIE_DETAIL),
+      NavigationConstant.MOVIE_DETAIL => normalNavigate(MovieDetailPageView(args.arguments as int), NavigationConstant.MOVIE_DETAIL),
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
     };
   }

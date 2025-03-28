@@ -22,7 +22,10 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
           children: [
             SizedBox(
               height: 150,
-              child: MovieTileWidget(movie: movie),
+              child: MovieTileWidget(
+                movie: movie,
+                onTap: () {},
+              ),
             ),
             Gap(context.MidSpacer),
             Expanded(

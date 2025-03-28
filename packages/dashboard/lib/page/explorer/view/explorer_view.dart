@@ -71,7 +71,12 @@ class _ExplorerViewState extends State<ExplorerView> {
                   ),
                   itemCount: viewModel.randomMovieWithCategoryPartList.length,
                   itemBuilder: (context, index) {
-                    return SizedBox(height: posterHeight, child: MovieTileWidget(movie: viewModel.randomMovieWithCategoryPartList[index]));
+                    return SizedBox(
+                        height: posterHeight,
+                        child: MovieTileWidget(
+                          movie: viewModel.randomMovieWithCategoryPartList[index],
+                          onTap: () {},
+                        ));
                   },
                 ),
               ),

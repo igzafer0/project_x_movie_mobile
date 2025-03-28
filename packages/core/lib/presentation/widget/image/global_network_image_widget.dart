@@ -12,7 +12,7 @@ class GlobalNetworkImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (imagePath.isNotEmpty && imagePath.startsWith("https://")) {
       return ClipRRect(
-        borderRadius: context.MidRadius,
+        borderRadius: context.SmallRadius,
         child: Image.network(
           imagePath,
           alignment: Alignment.topCenter,

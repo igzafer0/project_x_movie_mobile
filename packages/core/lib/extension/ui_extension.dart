@@ -30,8 +30,7 @@ extension TextStyleExtension on BuildContext {
 extension MarginPaddingExtension on BuildContext {
   EdgeInsets get MidVerticalSpacer => const EdgeInsets.symmetric(vertical: 10);
 
-  EdgeInsets get MidHorizontalSpacer =>
-      const EdgeInsets.symmetric(horizontal: 10);
+  EdgeInsets get MidHorizontalSpacer => const EdgeInsets.symmetric(horizontal: 10);
 
   EdgeInsets get MidRightSpacer => const EdgeInsets.only(right: 10);
 }
@@ -50,4 +49,5 @@ extension SpacerSizeExtension on BuildContext {
 
 extension RadiusExtension on BuildContext {
   BorderRadius get MidRadius => const BorderRadius.all(Radius.circular(10));
+  BorderRadius get SmallRadius => const BorderRadius.all(Radius.circular(5));
 }

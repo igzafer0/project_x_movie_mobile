@@ -9,30 +9,47 @@ import 'package:movie/data/model/movie/movie_model.dart';
 
 class MovieTileWidget extends StatelessWidget {
   final MovieModel movie;
-  const MovieTileWidget({required this.movie, super.key});
+  final VoidCallback onTap;
+  const MovieTileWidget({required this.movie, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1 / 1.5,
-      child: movie.adult
-          ? Stack(
-              children: [
-                GlobalNetworkImageWidget(imagePath: movie.poster),
-                ClipRRect(
-                  borderRadius: context.MidRadius,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: Container(
-                      color: Colors.black.withValues(alpha: 0.5),
-                      alignment: Alignment.center,
-                      child: GlobalLabelTextWidget(text: "Adult", size: TextSize.BIG_TITLE),
+    return Stack(
+      children: [
+        AspectRatio(
+          aspectRatio: 1 / 1.5,
+          child: movie.adult
+              ? Stack(
+                  children: [
+                    GlobalNetworkImageWidget(imagePath: movie.poster),
+                    ClipRRect(
+                      borderRadius: context.SmallRadius,
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                        child: Container(
+                          color: Colors.black.withValues(alpha: 0.5),
+                          alignment: Alignment.center,
+                          child: GlobalLabelTextWidget(text: "Adult", size: TextSize.BIG_TITLE),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            )
-          : GlobalNetworkImageWidget(imagePath: movie.poster),
+                  ],
+                )
+              : GlobalNetworkImageWidget(imagePath: movie.poster),
+        ),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: context.SmallRadius,
+            onTap: () => onTap(),
+            splashColor: Colors.white24,
+            highlightColor: Colors.transparent,
+            child: AspectRatio(
+              aspectRatio: 1 / 1.5,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

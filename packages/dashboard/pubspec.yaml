@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  project_x_movie_mobile:
+    path: ../../
+
   movie:
     path: ../movie
   genre:

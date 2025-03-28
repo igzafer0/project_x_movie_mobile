@@ -15,7 +15,8 @@ final locator = GetIt.instance;
 
 void init() {
   locator.registerSingleton(NavigationRoute());
-  locator.registerSingleton(NavigationService());
+
+  locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => RemoteClient());
 
   locator.registerLazySingleton<MovieRemoteDataSource>(

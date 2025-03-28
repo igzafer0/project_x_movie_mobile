@@ -12,35 +12,54 @@ abstract class INavigationService {
 class NavigationService implements INavigationService {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
   String currentPage = NavigationConstant.DEFAULT;
-  bool removeAllOldRoutes(Route<dynamic> route) => false;
+
+  // Esnek route temizleme
+  bool removeAllOldRoutes(Route<dynamic> route) {
+    return route.settings.name != currentPage;
+  }
 
   @override
   Future<void> navigateToPage({required String path, Object? data}) async {
     currentPage = path;
-    await navigatorKey.currentState!.pushNamed(path, arguments: data);
+    if (navigatorKey.currentState != null) {
+      await navigatorKey.currentState!.pushNamed(path, arguments: data);
+    } else {
+      //TODO Handle null navigatorState (e.g., show error message or log it)
+    }
   }
 
   @override
   Future<void> navigateToPageClear({required String path, Object? data}) async {
     currentPage = path;
-
-    await navigatorKey.currentState!
-        .pushNamedAndRemoveUntil(path, removeAllOldRoutes, arguments: data);
+    if (navigatorKey.currentState != null) {
+      await navigatorKey.currentState!.pushNamedAndRemoveUntil(path, removeAllOldRoutes, arguments: data);
+    }
   }
 
   @override
   Future<void> navigateToPagePop({required String path, Object? data}) async {
     currentPage = path;
-    await navigatorKey.currentState!.popAndPushNamed(path, arguments: data);
+    if (navigatorKey.currentState != null) {
+      await navigatorKey.currentState!.popAndPushNamed(path, arguments: data);
+    }
   }
 
   @override
   Future<void> pop({Object? data}) async {
-    navigatorKey.currentState!.pop(data);
+    if (navigatorKey.currentState != null) {
+      navigatorKey.currentState!.pop(data);
+    }
   }
 
   @override
   Future<void> maybePop() async {
-    navigatorKey.currentState!.maybePop();
+    if (navigatorKey.currentState != null) {
+      navigatorKey.currentState!.maybePop();
+    }
+  }
+
+  // Sayfa durumu kontrolü
+  String getCurrentPage() {
+    return currentPage;
   }
 }
