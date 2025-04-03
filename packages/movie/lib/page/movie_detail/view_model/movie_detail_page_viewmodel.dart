@@ -4,6 +4,7 @@ import 'package:core/presentation/core_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
+import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 import 'package:movie/data/usecase/movie_usecase.dart';
 part 'movie_detail_page_viewmodel.g.dart';
@@ -16,6 +17,7 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
   @override
   void init() {
     getDetail();
+    getCredit();
   }
 
   @override
@@ -35,6 +37,9 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
     genres: [],
   );
 
+  @observable
+  List<CreditModel> credit = [];
+
   late final int movieID;
   @action
   Future<void> getDetail() async {
@@ -42,5 +47,14 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
     if (result.status) {
       movie = result.data!;
     }
+  }
+
+  @action
+  Future<void> getCredit() async {
+    var result = await movieUseCase.credit(movieID);
+    if (result.status) {
+      credit = result.data!;
+    }
+    debugPrint("test ${credit.first.person.name}");
   }
 }

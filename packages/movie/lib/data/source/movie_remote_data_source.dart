@@ -1,11 +1,13 @@
 import 'package:core/network/client/remote_client.dart';
 import 'package:core/network/dto/response_model.dart';
 import 'package:dio/dio.dart';
+import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<ResponseModel> random(int limit, List<int> genres);
   Future<ResponseModel> detail(int movieID);
+  Future<ResponseModel> credit(int movieID);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -37,6 +39,25 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     try {
       var result = await remote.client.get("/movie/$movieID");
       final response = ResponseModel<MovieModel>.fromJson(result.data, (data) => MovieModel.fromJson(data as Map<String, dynamic>));
+      return response;
+    } on DioException catch (e) {
+      var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
+      return eresult;
+    }
+  }
+
+  @override
+  Future<ResponseModel> credit(int movieID) async {
+    try {
+      var result = await remote.client.get("/movie/$movieID/credit");
+      final response = ResponseModel<List<CreditModel>>.fromJson(
+        result.data,
+        (data) => (data as List<dynamic>)
+            .map(
+              (item) => CreditModel.fromJson(item as Map<String, dynamic>),
+            )
+            .toList(),
+      );
       return response;
     } on DioException catch (e) {
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});

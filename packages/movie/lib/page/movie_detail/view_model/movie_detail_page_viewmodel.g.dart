@@ -25,6 +25,22 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     });
   }
 
+  late final _$creditAtom =
+      Atom(name: '_MovieDetailPageViewModelBase.credit', context: context);
+
+  @override
+  List<CreditModel> get credit {
+    _$creditAtom.reportRead();
+    return super.credit;
+  }
+
+  @override
+  set credit(List<CreditModel> value) {
+    _$creditAtom.reportWrite(value, super.credit, () {
+      super.credit = value;
+    });
+  }
+
   late final _$getDetailAsyncAction =
       AsyncAction('_MovieDetailPageViewModelBase.getDetail', context: context);
 
@@ -33,10 +49,19 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     return _$getDetailAsyncAction.run(() => super.getDetail());
   }
 
+  late final _$getCreditAsyncAction =
+      AsyncAction('_MovieDetailPageViewModelBase.getCredit', context: context);
+
+  @override
+  Future<void> getCredit() {
+    return _$getCreditAsyncAction.run(() => super.getCredit());
+  }
+
   @override
   String toString() {
     return '''
-movie: ${movie}
+movie: ${movie},
+credit: ${credit}
     ''';
   }
 }

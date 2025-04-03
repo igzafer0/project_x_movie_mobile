@@ -16,4 +16,9 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<ResponseModel> detail(int movieID) {
     return remote.detail(movieID);
   }
+
+  @override
+  Future<ResponseModel> credit(int movieID) {
+    return remote.credit(movieID);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:core/network/dto/response_model.dart';
+import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 import 'package:movie/data/repository/movie_repository.dart';
 
@@ -14,5 +15,9 @@ class MovieUseCase {
 
   Future<ResponseModel<MovieModel>> detail(int movieID) async {
     return await repository.detail(movieID) as ResponseModel<MovieModel>;
+  }
+
+  Future<ResponseModel<List<CreditModel>>> credit(int movieID) async {
+    return await repository.credit(movieID) as ResponseModel<List<CreditModel>>;
   }
 }
