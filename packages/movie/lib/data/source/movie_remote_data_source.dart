@@ -5,6 +5,7 @@ import 'package:movie/data/model/movie/movie_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<ResponseModel> random(int limit, List<int> genres);
+  Future<ResponseModel> detail(int movieID);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -24,6 +25,18 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
             )
             .toList(),
       );
+      return response;
+    } on DioException catch (e) {
+      var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
+      return eresult;
+    }
+  }
+
+  @override
+  Future<ResponseModel> detail(int movieID) async {
+    try {
+      var result = await remote.client.get("/movie/$movieID");
+      final response = ResponseModel<MovieModel>.fromJson(result.data, (data) => MovieModel.fromJson(data as Map<String, dynamic>));
       return response;
     } on DioException catch (e) {
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});

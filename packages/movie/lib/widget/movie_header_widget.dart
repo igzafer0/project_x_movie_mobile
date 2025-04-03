@@ -1,11 +1,10 @@
-import 'package:core/constant/color_constant.dart';
 import 'package:core/core.dart';
 import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
-import 'package:core/presentation/widget/image/global_network_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
+import 'package:movie/widget/movie_tile_with_shadow_widget.dart';
 
 class MovieHeaderWidget extends StatelessWidget {
   final MovieModel movie;
@@ -19,36 +18,7 @@ class MovieHeaderWidget extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          SizedBox(
-            width: context.ScreenWidth,
-            child: GlobalNetworkImageWidget(imagePath: movie.poster),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Colors.transparent,
-                  ColorConstant.PRIMARY_COLOR.withValues(alpha: .1),
-                  ColorConstant.PRIMARY_COLOR,
-                ],
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  ColorConstant.PRIMARY_COLOR.withValues(alpha: .1),
-                  ColorConstant.PRIMARY_COLOR,
-                ],
-              ),
-            ),
-          ),
+          MovieTileWithShadowWidget(movie),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
             child: Column(

@@ -11,6 +11,8 @@ final class MovieModel {
   String name;
   @JsonKey(name: "poster")
   String poster;
+  @JsonKey(name: "backdrop")
+  String backdrop;
   @JsonKey(name: "description")
   String description;
   @JsonKey(name: "release")
@@ -25,6 +27,7 @@ final class MovieModel {
     required this.name,
     required this.description,
     required this.poster,
+    required this.backdrop,
     required this.release,
     required this.adult,
     required this.genres,

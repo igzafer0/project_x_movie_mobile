@@ -11,4 +11,9 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<ResponseModel> random(int limit, List<int> genres) {
     return remote.random(limit, genres);
   }
+
+  @override
+  Future<ResponseModel> detail(int movieID) {
+    return remote.detail(movieID);
+  }
 }

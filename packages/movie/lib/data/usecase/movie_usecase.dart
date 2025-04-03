@@ -11,4 +11,8 @@ class MovieUseCase {
     genres = genres ?? [];
     return await repository.random(limit, genres) as ResponseModel<List<MovieModel>>;
   }
+
+  Future<ResponseModel<MovieModel>> detail(int movieID) async {
+    return await repository.detail(movieID) as ResponseModel<MovieModel>;
+  }
 }
