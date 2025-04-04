@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:math';
+
 import 'package:core/presentation/core_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:genre/data/model/genre/genre_model.dart';
@@ -20,7 +22,6 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
 
   @override
   void init() {
-    _getRandomMovieWithCategoryPart();
     _firstMoviePart();
     _getRandomMovieCategoryPriorityPart();
     _getGenreList();
@@ -45,6 +46,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     name: "",
     description: "",
     poster: "",
+    backdrop: "",
     release: "",
     genres: [],
     adult: false,
@@ -55,13 +57,15 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     name: "",
     description: "",
     poster: "",
+    backdrop: "",
     release: "",
     genres: [],
     adult: false,
   );
   @action
   Future<void> _getRandomMovieWithCategoryPart() async {
-    var result = await movieUseCase.repository.random(10, []);
+    var randomIndex = Random().nextInt(genreList.length);
+    var result = await movieUseCase.repository.random(10, [genreList[randomIndex].id]);
     if (result.status) randomMovieWithCategoryPartList = result.data ?? [];
   }
 
@@ -74,6 +78,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
             name: "",
             description: "",
             poster: "",
+            backdrop: "",
             release: "",
             genres: [],
             adult: false,
@@ -85,7 +90,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     var result = await movieUseCase.repository.random(1, []);
     if (result.status) {
       categoryPriorityMoviePart =
-          result.data?.first ?? MovieModel(id: -1, name: "", description: "", poster: "", release: "", genres: [], adult: false);
+          result.data?.first ?? MovieModel(id: -1, name: "", description: "", poster: "", backdrop: "", release: "", genres: [], adult: false);
     }
   }
 
@@ -93,6 +98,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     var result = await genreUseCase.repository.genres();
     if (result.status) {
       genreList = result.data ?? [];
+      _getRandomMovieWithCategoryPart();
     }
   }
 }

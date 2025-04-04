@@ -9,7 +9,8 @@ import 'package:movie/widget/movie_tile_widget.dart';
 
 class MovieCategoryPriorityWidget extends StatelessWidget {
   final MovieModel movie;
-  const MovieCategoryPriorityWidget({required this.movie, super.key});
+  final VoidCallback onTap;
+  const MovieCategoryPriorityWidget({required this.movie, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
               height: 150,
               child: MovieTileWidget(
                 movie: movie,
-                onTap: () {},
+                onTap: () => onTap(),
               ),
             ),
             Gap(context.MidSpacer),
@@ -47,7 +48,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
           color: ColorConstant.SECONDARY_TEXT_COLOR,
         ),
         Gap(context.MidSpacer),
-        SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () {}, title: "See details"))
+        SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () => onTap(), title: "See details"))
       ],
     );
   }

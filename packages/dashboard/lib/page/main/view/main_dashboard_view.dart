@@ -62,7 +62,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GlobalLabelTextWidget(
-                text: "${viewModel.randomMovieWithCategoryPartList.last.genres.first.name} Movies",
+                text: "${viewModel.randomMovieWithCategoryPartList.first.genres.last.name} Movies",
                 size: TextSize.BIG_TITLE,
               ),
               Gap(context.LargeSpacer),
@@ -81,7 +81,10 @@ class _MainDashboardViewState extends State<MainDashboardView> {
   _firstMoviePart() {
     return Observer(builder: (_) {
       if (viewModel.firstMoviePart.id != -1) {
-        return MovieHeaderWidget(movie: viewModel.firstMoviePart);
+        return MovieHeaderWidget(
+          movie: viewModel.firstMoviePart,
+          onTap: () => viewModel.navigateDetailPage(viewModel.firstMoviePart.id),
+        );
       }
       return const SizedBox.shrink();
     });
@@ -114,7 +117,10 @@ class _MainDashboardViewState extends State<MainDashboardView> {
       if (viewModel.categoryPriorityMoviePart.id != -1) {
         return Padding(
           padding: context.MidHorizontalSpacer,
-          child: MovieCategoryPriorityWidget(movie: viewModel.categoryPriorityMoviePart),
+          child: MovieCategoryPriorityWidget(
+            movie: viewModel.categoryPriorityMoviePart,
+            onTap: () => viewModel.navigateDetailPage(viewModel.categoryPriorityMoviePart.id),
+          ),
         );
       }
       return const SizedBox.shrink();

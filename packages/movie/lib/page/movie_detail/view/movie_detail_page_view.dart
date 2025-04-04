@@ -71,23 +71,7 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
                 child: GlobalLabelTextWidget(text: viewModel.movie.description, size: TextSize.SUBTITLE),
               ),
               Gap(context.MidSpacer),
-              Padding(
-                padding: context.MidHorizontalSpacer,
-                child: GlobalLabelTextWidget(text: "Cast", size: TextSize.BIG_TITLE),
-              ),
-              Gap(context.MidSpacer),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  padding: context.MidHorizontalSpacer,
-                  cacheExtent: (200 / 1.5) * viewModel.credit.length,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: viewModel.credit.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CreditWidget(viewModel.credit[index]);
-                  },
-                ),
-              ),
+              _castSection(),
               Gap(context.DoubleLargeSpacer),
               Gap(context.DoubleLargeSpacer),
             ],
@@ -96,5 +80,36 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
         return const SizedBox.shrink();
       }),
     );
+  }
+
+  Widget _castSection() {
+    return Observer(builder: (_) {
+      if (viewModel.credit.isEmpty) {
+        return const SizedBox.shrink();
+      }
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: context.MidHorizontalSpacer,
+            child: GlobalLabelTextWidget(text: "Cast", size: TextSize.BIG_TITLE),
+          ),
+          Gap(context.MidSpacer),
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              shrinkWrap: true,
+              padding: context.MidHorizontalSpacer,
+              cacheExtent: (200 / 1.5) * viewModel.credit.length,
+              scrollDirection: Axis.horizontal,
+              itemCount: viewModel.credit.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CreditWidget(viewModel.credit[index]);
+              },
+            ),
+          ),
+        ],
+      );
+    });
   }
 }

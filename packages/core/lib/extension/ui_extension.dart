@@ -28,11 +28,17 @@ extension TextStyleExtension on BuildContext {
 }
 
 extension MarginPaddingExtension on BuildContext {
+  EdgeInsets get LargeRightSpacer => const EdgeInsets.only(right: 15);
+
+  EdgeInsets get XLargeAllSpacer => const EdgeInsets.all(30);
+  EdgeInsets get LargeAllSpacer => const EdgeInsets.all(20);
+
   EdgeInsets get MidVerticalSpacer => const EdgeInsets.symmetric(vertical: 10);
 
   EdgeInsets get MidHorizontalSpacer => const EdgeInsets.symmetric(horizontal: 10);
 
   EdgeInsets get MidRightSpacer => const EdgeInsets.only(right: 10);
+  EdgeInsets get MidAllSpacer => const EdgeInsets.all(10);
 }
 
 extension ScreenSizeExtension on BuildContext {

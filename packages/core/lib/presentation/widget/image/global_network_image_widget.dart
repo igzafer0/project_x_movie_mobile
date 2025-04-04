@@ -18,14 +18,7 @@ class GlobalNetworkImageWidget extends StatelessWidget {
           alignment: Alignment.topCenter,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            return Image.network(imagePath, fit: BoxFit.cover, errorBuilder: (context, error, stackTrace) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: ColorConstant.APP_ORANGE,
-                  value: 100,
-                ),
-              );
-            });
+            return Image.network("https://placehold.co/133x200/png", fit: BoxFit.cover);
           },
           loadingBuilder: (context, child, loadingProgress) {
             if (loadingProgress == null) {

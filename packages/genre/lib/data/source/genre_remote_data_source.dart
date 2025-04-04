@@ -15,10 +15,7 @@ class GenreRemoteDataSourceImpl extends GenreRemoteDataSource {
   Future<ResponseModel<List<GenreModel>>> genres() async {
     var result = await remote.client.get("/genre");
     final response = ResponseModel<List<GenreModel>>.fromJson(
-        result.data,
-        (data) => (data as List<dynamic>)
-            .map((item) => GenreModel.fromJson(item as Map<String, dynamic>))
-            .toList());
+        result.data, (data) => (data as List<dynamic>).map((item) => GenreModel.fromJson(item as Map<String, dynamic>)).toList());
     return response;
   }
 }

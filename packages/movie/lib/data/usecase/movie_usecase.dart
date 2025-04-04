@@ -10,14 +10,26 @@ class MovieUseCase {
   Future<ResponseModel<List<MovieModel>>> random({int? limit, List<int>? genres}) async {
     limit = limit ?? 1;
     genres = genres ?? [];
-    return await repository.random(limit, genres) as ResponseModel<List<MovieModel>>;
+    var result = await repository.random(limit, genres);
+    if (result.status) {
+      return result as ResponseModel<List<MovieModel>>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
   }
 
   Future<ResponseModel<MovieModel>> detail(int movieID) async {
-    return await repository.detail(movieID) as ResponseModel<MovieModel>;
+    var result = await repository.detail(movieID);
+    if (result.status) {
+      return result as ResponseModel<MovieModel>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
   }
 
   Future<ResponseModel<List<CreditModel>>> credit(int movieID) async {
-    return await repository.credit(movieID) as ResponseModel<List<CreditModel>>;
+    var result = await repository.credit(movieID);
+    if (result.status) {
+      return result as ResponseModel<List<CreditModel>>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
   }
 }

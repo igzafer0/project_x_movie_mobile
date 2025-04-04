@@ -55,6 +55,5 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
     if (result.status) {
       credit = result.data!;
     }
-    debugPrint("test ${credit.first.person.name}");
   }
 }

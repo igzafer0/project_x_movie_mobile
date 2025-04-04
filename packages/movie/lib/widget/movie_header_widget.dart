@@ -8,7 +8,8 @@ import 'package:movie/widget/movie_tile_with_shadow_widget.dart';
 
 class MovieHeaderWidget extends StatelessWidget {
   final MovieModel movie;
-  const MovieHeaderWidget({required this.movie, super.key});
+  final VoidCallback onTap;
+  const MovieHeaderWidget({required this.movie, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MovieHeaderWidget extends StatelessWidget {
                   ),
                 ),
                 Gap(context.MidSpacer),
-                SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () {}, title: "See details"))
+                SizedBox(width: context.ScreenWidth * .9, child: GlobalCommonButtonWidget(onTap: () => onTap(), title: "See details"))
               ],
             ),
           ),

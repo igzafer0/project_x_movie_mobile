@@ -31,6 +31,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     } on DioException catch (e) {
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
       return eresult;
+    } catch (_) {
+      return ResponseModel(status: false, message: "there is an error");
     }
   }
 
@@ -43,6 +45,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     } on DioException catch (e) {
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
       return eresult;
+    } catch (_) {
+      return ResponseModel(status: false, message: "there is an error");
     }
   }
 
@@ -62,6 +66,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     } on DioException catch (e) {
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
       return eresult;
+    } catch (_) {
+      return ResponseModel(status: false, message: "there is an error");
     }
   }
 }
