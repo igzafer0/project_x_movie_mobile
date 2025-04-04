@@ -21,5 +21,5 @@ class ColorConstant {
   static const SECONDARY_TEXT_COLOR = Color.fromARGB(255, 141, 141, 141);
 
   static const PRIMARY_COLOR = Color.fromRGBO(20, 24, 27, 1.0);
-  static const SECONDARY_COLOR = Color.fromRGBO(63, 63, 63, 1);
+  static const SECONDARY_COLOR = Color.fromRGBO(40, 40, 40, 1);
 }

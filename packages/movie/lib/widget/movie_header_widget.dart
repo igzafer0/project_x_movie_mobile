@@ -13,6 +13,7 @@ class MovieHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    movie.backdrop = movie.poster;
     return SizedBox(
       width: context.ScreenWidth,
       height: context.ScreenHeight * .55,

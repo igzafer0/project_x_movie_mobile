@@ -72,7 +72,7 @@ class _LoginViewState extends State<LoginView> {
                           SizedBox(
                             height: 50,
                             child: GlobalCommonButtonWidget(
-                              onTap: () {},
+                              onTap: () => viewModel.doLogin(),
                               title: "Enter",
                               color: ColorConstant.SECONDARY_COLOR,
                             ),

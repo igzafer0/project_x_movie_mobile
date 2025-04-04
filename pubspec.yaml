@@ -19,7 +19,8 @@ dependencies:
     path: packages/movie
   dashboard:
     path: packages/dashboard
-
+  auth:
+    path: packages/auth
   provider: ^6.0.5
 
   #locator

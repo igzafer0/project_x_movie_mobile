@@ -39,6 +39,7 @@ extension MarginPaddingExtension on BuildContext {
 
   EdgeInsets get MidRightSpacer => const EdgeInsets.only(right: 10);
   EdgeInsets get MidAllSpacer => const EdgeInsets.all(10);
+  EdgeInsets get SmallAllSpacer => const EdgeInsets.all(5);
 }
 
 extension ScreenSizeExtension on BuildContext {

@@ -10,6 +10,10 @@ import 'package:movie/data/source/movie_remote_data_source.dart';
 import 'package:movie/data/usecase/movie_usecase.dart';
 import 'package:project_x_movie_mobile/config/navigation/navigation_route.dart';
 import 'package:project_x_movie_mobile/config/navigation/navigation_service.dart';
+import 'package:auth/data/repository/auth_repository.dart';
+import 'package:auth/data/source/auth_remote_data_source.dart';
+import 'package:auth/data/usecase/auth_usecase.dart';
+import 'package:auth/data/impl/auth_repository_impl.dart';
 
 final locator = GetIt.instance;
 
@@ -18,7 +22,7 @@ void init() {
 
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => RemoteClient());
-
+  /* */
   locator.registerLazySingleton<MovieRemoteDataSource>(
     () => MovieRemoteDataSourceImpl(remote: locator()),
   );
@@ -26,7 +30,7 @@ void init() {
     () => MovieRepositoryImpl(locator()),
   );
   locator.registerLazySingleton(() => MovieUseCase(locator()));
-
+  /* */
   locator.registerLazySingleton<GenreRemoteDataSource>(
     () => GenreRemoteDataSourceImpl(remote: locator()),
   );
@@ -34,12 +38,12 @@ void init() {
     () => GenreRepositoryImpl(locator()),
   );
   locator.registerLazySingleton(() => GenreUseCase(locator()));
-
-  // locator.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl());
-  // locator.registerLazySingleton<MovieRemoteDataSource>(
-  //     () => MovieRemoteDataSourceImpl());
-
-  // locator.registerLazySingleton<GenreRepository>(() => GenreRepositoryImpl());
-  // locator.registerLazySingleton<GenreRemoteDataSource>(
-  //     () => GenreRemoteDataSourceImpl());
+  /* */
+  locator.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(remote: locator()),
+  );
+  locator.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(locator()),
+  );
+  locator.registerLazySingleton(() => AuthUseCase(locator()));
 }

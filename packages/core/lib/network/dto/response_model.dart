@@ -18,8 +18,8 @@ class ResponseModel<T> {
     return ResponseModel(
       status: json['status'] as bool,
       message: json['message'] as String,
-      data: json.containsKey('data') ? fromJsonT(json['data']) : null,
       error: json['error'] as String?,
+      data: json.containsKey('data') ? fromJsonT(json['data']) : null,
     );
   }
 }

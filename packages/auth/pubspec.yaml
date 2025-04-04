@@ -20,6 +20,11 @@ dependencies:
   mobx_codegen: ^2.1.1
   build_runner: ^2.3.3
   gap: ^3.0.0
+  dio: ^5.3.3
+  json_serializable: ^6.6.1
+  json_annotation: ^4.8.1
+  get_it: ^7.6.0
+  fluttertoast: ^8.2.4
 
 dev_dependencies:
   flutter_test:

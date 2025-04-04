@@ -5,6 +5,7 @@ class GlobalTextFieldWidget extends StatefulWidget {
   final String initValue;
   final String hintText;
   final int? maxLength;
+  final bool outsideTap;
 
   final Function(String) newText;
   const GlobalTextFieldWidget({
@@ -12,6 +13,7 @@ class GlobalTextFieldWidget extends StatefulWidget {
     this.initValue = "",
     this.hintText = "",
     this.maxLength,
+    this.outsideTap = false,
     required this.newText,
   });
 
@@ -45,7 +47,9 @@ class _GlobalTextFieldlWidgetState extends State<GlobalTextFieldWidget> {
   TextField _textFieldWidget(BuildContext context) {
     return TextField(
       onTapOutside: (event) {
-        FocusManager.instance.primaryFocus?.unfocus();
+        if (widget.outsideTap) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
       },
       controller: _controller,
       autocorrect: false,
