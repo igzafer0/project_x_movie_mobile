@@ -5,9 +5,9 @@ part 'token_model.g.dart';
 @JsonSerializable()
 final class TokenModel {
   @JsonKey(name: "access")
-  String access;
+  String? access;
   @JsonKey(name: "refresh")
-  String refresh;
+  String? refresh;
 
   TokenModel({
     required this.access,

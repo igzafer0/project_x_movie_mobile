@@ -1,4 +1,4 @@
-name: core
+name: onboarding
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
@@ -12,23 +12,21 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dio: ^5.3.3
+  core:
+    path: ../core
 
+  project_x_movie_mobile:
+    path: ../../
+  dio: ^5.3.3
+  json_serializable: ^6.6.1
+  json_annotation: ^4.8.1
+  gap: ^3.0.0
   #Mobx part
   mobx: ^2.1.4
   flutter_mobx: ^2.0.6+5
   mobx_codegen: ^2.1.1
   build_runner: ^2.3.3
-  shimmer: ^3.0.0
-
-  json_serializable: ^6.6.1
-  json_annotation: ^4.8.1
-  jwt_decoder: ^2.0.1
-  shared_preferences: ^2.5.3
-
   get_it: ^7.6.0
-  project_x_movie_mobile:
-    path: ../../
 
 dev_dependencies:
   flutter_test:

@@ -8,6 +8,10 @@ import 'package:movie/data/impl/movie_repository_impl.dart';
 import 'package:movie/data/repository/movie_repository.dart';
 import 'package:movie/data/source/movie_remote_data_source.dart';
 import 'package:movie/data/usecase/movie_usecase.dart';
+import 'package:onboarding/data/impl/onboarding_repository_impl.dart';
+import 'package:onboarding/data/repository/onboarding_repository.dart';
+import 'package:onboarding/data/source/onboarding_remote_data_source.dart';
+import 'package:onboarding/data/usercase/onboarding_usecase.dart';
 import 'package:project_x_movie_mobile/config/navigation/navigation_route.dart';
 import 'package:project_x_movie_mobile/config/navigation/navigation_service.dart';
 import 'package:auth/data/repository/auth_repository.dart';
@@ -46,4 +50,12 @@ void init() {
     () => AuthRepositoryImpl(locator()),
   );
   locator.registerLazySingleton(() => AuthUseCase(locator()));
+  /* */
+  locator.registerLazySingleton<OnboardingRemoteDataSource>(
+    () => OnboardingRemoteDataSourceImpl(remote: locator()),
+  );
+  locator.registerLazySingleton<OnboardingRepository>(
+    () => OnboardingRepositoryImpl(locator()),
+  );
+  locator.registerLazySingleton(() => OnboardingUseCase(locator()));
 }

@@ -21,6 +21,8 @@ dependencies:
     path: packages/dashboard
   auth:
     path: packages/auth
+  onboarding:
+    path: packages/onboarding
   provider: ^6.0.5
 
   #locator

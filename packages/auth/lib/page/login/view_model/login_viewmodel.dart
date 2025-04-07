@@ -15,9 +15,7 @@ class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
 abstract class _LoginViewModelBase with Store, CoreViewModel {
   final authUseCase = GetIt.I<AuthUseCase>();
   @override
-  void init() {
-    doLogin();
-  }
+  void init() {}
 
   @override
   void setContext(BuildContext context) {
@@ -26,7 +24,6 @@ abstract class _LoginViewModelBase with Store, CoreViewModel {
 
   Future<void> doLogin() async {
     var result = await authUseCase.login(login: LoginModel(email: "zaferkurumsal@gmail.com", password: "08460846"));
-    debugPrint("test ${result.error}");
     Fluttertoast.showToast(
       msg: result.error ?? "Get an error",
       toastLength: Toast.LENGTH_SHORT, // ya da Toast.LENGTH_LONG
