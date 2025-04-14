@@ -86,6 +86,22 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     }
   }
 
+  String findCommonGenre(List<MovieModel> movies) {
+    final Map<int, int> genreCount = {};
+    final Map<int, GenreModel> genreMap = {};
+    for (var movie in movies) {
+      for (var genre in movie.genres) {
+        genreCount[genre.id] = (genreCount[genre.id] ?? 0) + 1;
+        genreMap[genre.id] = genre;
+      }
+    }
+
+    final topGenreId = genreCount.entries.reduce((a, b) => a.value > b.value ? a : b).key;
+
+    final topGenre = genreMap[topGenreId];
+    return topGenre?.name ?? "";
+  }
+
   Future<void> _getRandomMovieCategoryPriorityPart() async {
     var result = await movieUseCase.repository.random(1, []);
     if (result.status) {

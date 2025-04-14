@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:movie/page/movie_detail/view_model/movie_detail_page_viewmodel.dart';
+import 'package:movie/section/movie_list_section.dart';
 import 'package:movie/widget/credit_widget.dart';
 import 'package:movie/widget/movie_tile_widget.dart';
 import 'package:movie/widget/movie_tile_with_shadow_widget.dart';
@@ -72,6 +73,7 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
               ),
               Gap(context.MidSpacer),
               _castSection(),
+              _similarMoviePart(),
               Gap(context.DoubleLargeSpacer),
               Gap(context.DoubleLargeSpacer),
             ],
@@ -80,6 +82,31 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
         return const SizedBox.shrink();
       }),
     );
+  }
+
+  Widget _similarMoviePart() {
+    return Observer(builder: (_) {
+      if (viewModel.similarMovieList.isNotEmpty) {
+        return Padding(
+          padding: context.MidHorizontalSpacer,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GlobalLabelTextWidget(
+                text: "Similar Movies",
+                size: TextSize.BIG_TITLE,
+              ),
+              Gap(context.LargeSpacer),
+              SizedBox(
+                height: 200,
+                child: MovieListSection(viewModel.similarMovieList, (i) => viewModel.navigateDetailPage(i)),
+              ),
+            ],
+          ),
+        );
+      }
+      return const SizedBox.shrink();
+    });
   }
 
   Widget _castSection() {
@@ -96,7 +123,7 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
           ),
           Gap(context.MidSpacer),
           SizedBox(
-            height: 300,
+            height: 295,
             child: ListView.builder(
               shrinkWrap: true,
               padding: context.MidHorizontalSpacer,

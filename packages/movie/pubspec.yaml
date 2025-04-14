@@ -28,6 +28,8 @@ dependencies:
   build_runner: ^2.3.3
   get_it: ^7.6.0
 
+  project_x_movie_mobile:
+    path: ../../
 dev_dependencies:
   flutter_test:
     sdk: flutter

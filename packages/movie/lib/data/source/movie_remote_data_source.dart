@@ -8,6 +8,7 @@ abstract class MovieRemoteDataSource {
   Future<ResponseModel> random(int limit, List<int> genres);
   Future<ResponseModel> detail(int movieID);
   Future<ResponseModel> credit(int movieID);
+  Future<ResponseModel> similar(int movieID, int limit);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -59,6 +60,27 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
         (data) => (data as List<dynamic>)
             .map(
               (item) => CreditModel.fromJson(item as Map<String, dynamic>),
+            )
+            .toList(),
+      );
+      return response;
+    } on DioException catch (e) {
+      var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
+      return eresult;
+    } catch (_) {
+      return ResponseModel(status: false, message: "there is an error");
+    }
+  }
+
+  @override
+  Future<ResponseModel> similar(int movieID, int limit) async {
+    try {
+      var result = await remote.client.get("/movie/$movieID/similar", queryParameters: {"limit": limit});
+      final response = ResponseModel<List<MovieModel>>.fromJson(
+        result.data,
+        (data) => (data as List<dynamic>)
+            .map(
+              (item) => MovieModel.fromJson(item as Map<String, dynamic>),
             )
             .toList(),
       );

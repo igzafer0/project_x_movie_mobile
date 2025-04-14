@@ -62,7 +62,7 @@ class _MainDashboardViewState extends State<MainDashboardView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GlobalLabelTextWidget(
-                text: "${viewModel.randomMovieWithCategoryPartList.first.genres.last.name} Movies",
+                text: "${viewModel.findCommonGenre(viewModel.randomMovieWithCategoryPartList)} Movies",
                 size: TextSize.BIG_TITLE,
               ),
               Gap(context.LargeSpacer),

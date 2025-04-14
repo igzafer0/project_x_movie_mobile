@@ -7,6 +7,7 @@ import 'package:mobx/mobx.dart';
 import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 import 'package:movie/data/usecase/movie_usecase.dart';
+import 'package:project_x_movie_mobile/util/constant/navigation_constant.dart';
 part 'movie_detail_page_viewmodel.g.dart';
 
 class MovieDetailPageViewModel = _MovieDetailPageViewModelBase with _$MovieDetailPageViewModel;
@@ -18,6 +19,7 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
   void init() {
     getDetail();
     getCredit();
+    //getSimilarMovie();
   }
 
   @override
@@ -40,6 +42,8 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
   @observable
   List<CreditModel> credit = [];
 
+  @observable
+  List<MovieModel> similarMovieList = [];
   late final int movieID;
   @action
   Future<void> getDetail() async {
@@ -55,5 +59,17 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
     if (result.status) {
       credit = result.data!;
     }
+  }
+
+  @action
+  Future<void> getSimilarMovie() async {
+    var result = await movieUseCase.similar(movieID: movieID, limit: 10);
+    if (result.status) {
+      similarMovieList = result.data!;
+    }
+  }
+
+  navigateDetailPage(int movieID) {
+    navigator.navigateToPage(path: NavigationConstant.MOVIE_DETAIL, data: movieID);
   }
 }

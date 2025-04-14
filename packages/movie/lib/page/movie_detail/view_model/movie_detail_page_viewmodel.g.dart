@@ -41,6 +41,22 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     });
   }
 
+  late final _$similarMovieListAtom = Atom(
+      name: '_MovieDetailPageViewModelBase.similarMovieList', context: context);
+
+  @override
+  List<MovieModel> get similarMovieList {
+    _$similarMovieListAtom.reportRead();
+    return super.similarMovieList;
+  }
+
+  @override
+  set similarMovieList(List<MovieModel> value) {
+    _$similarMovieListAtom.reportWrite(value, super.similarMovieList, () {
+      super.similarMovieList = value;
+    });
+  }
+
   late final _$getDetailAsyncAction =
       AsyncAction('_MovieDetailPageViewModelBase.getDetail', context: context);
 
@@ -57,11 +73,21 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     return _$getCreditAsyncAction.run(() => super.getCredit());
   }
 
+  late final _$getSimilarMovieAsyncAction = AsyncAction(
+      '_MovieDetailPageViewModelBase.getSimilarMovie',
+      context: context);
+
+  @override
+  Future<void> getSimilarMovie() {
+    return _$getSimilarMovieAsyncAction.run(() => super.getSimilarMovie());
+  }
+
   @override
   String toString() {
     return '''
 movie: ${movie},
-credit: ${credit}
+credit: ${credit},
+similarMovieList: ${similarMovieList}
     ''';
   }
 }

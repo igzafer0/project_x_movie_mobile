@@ -21,4 +21,9 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<ResponseModel> credit(int movieID) {
     return remote.credit(movieID);
   }
+
+  @override
+  Future<ResponseModel> similar(int movieID, int limit) {
+    return remote.similar(movieID, limit);
+  }
 }

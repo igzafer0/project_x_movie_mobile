@@ -19,8 +19,8 @@ final class MovieModel {
   String release;
   @JsonKey(name: "adult")
   bool adult;
-  @JsonKey(name: "genres")
-  List<GenreModel> genres;
+  @JsonKey(name: "genres", defaultValue: [])
+  List<GenreModel> genres = [];
 
   MovieModel({
     required this.id,

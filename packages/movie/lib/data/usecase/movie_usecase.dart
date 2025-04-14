@@ -32,4 +32,13 @@ class MovieUseCase {
     }
     return ResponseModel(status: result.status, message: result.message);
   }
+
+  Future<ResponseModel<List<MovieModel>>> similar({required int movieID, int? limit}) async {
+    limit = limit ?? 1;
+    var result = await repository.similar(movieID, limit);
+    if (result.status) {
+      return result as ResponseModel<List<MovieModel>>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
+  }
 }

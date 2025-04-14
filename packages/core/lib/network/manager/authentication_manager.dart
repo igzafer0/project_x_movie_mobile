@@ -4,7 +4,6 @@ import 'package:core/network/manager/shared_manager.dart';
 import 'package:core/util/enum/preference_key_enum.dart';
 import 'package:core/util/resource/authentication_source.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project_x_movie_mobile/config/navigation/navigation_service.dart';
 import 'package:project_x_movie_mobile/util/constant/navigation_constant.dart';
@@ -37,8 +36,8 @@ class AuthenticationManager {
     );
     try {
       var token = await SharedManager().getStringValue(PreferenceKey.REFRESH_TOKEN);
-      debugPrint("test $token");
       var result = await networkManager.post("/auth/refresh", options: Options(headers: {"Authorization": "Bearer $token"}));
+
       final parsed = ResponseModel<TokenModel>.fromJson(result.data, (data) => TokenModel.fromJson(data as Map<String, dynamic>));
       final auth = AuthenticationSource();
       auth.setToken(parsed.data!);
