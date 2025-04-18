@@ -15,7 +15,7 @@ class MovieTileWithShadowWidget extends StatelessWidget {
         SizedBox(
           height: context.ScreenWidth * 1.2,
           width: context.ScreenWidth,
-          child: GlobalNetworkImageWidget(imagePath: movie.backdrop.contains("not found") ? movie.poster : movie.backdrop),
+          child: GlobalNetworkImageWidget(imagePath: movie.backdrop == "https://image.tmdb.org/t/p/original" ? movie.poster : movie.backdrop),
         ),
         Container(
           decoration: BoxDecoration(

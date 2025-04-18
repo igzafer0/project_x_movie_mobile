@@ -17,9 +17,9 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
 
   @override
   void init() {
+    getSimilarMovie();
     getDetail();
     getCredit();
-    //getSimilarMovie();
   }
 
   @override
@@ -63,6 +63,7 @@ abstract class _MovieDetailPageViewModelBase with Store, CoreViewModel {
 
   @action
   Future<void> getSimilarMovie() async {
+    debugPrint("winter $movieID");
     var result = await movieUseCase.similar(movieID: movieID, limit: 10);
     if (result.status) {
       similarMovieList = result.data!;

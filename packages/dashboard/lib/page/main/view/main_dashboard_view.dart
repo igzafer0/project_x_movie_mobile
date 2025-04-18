@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
 import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
+import 'package:core/presentation/widget/text_field/global_fake_text_field_widget.dart';
 import 'package:dashboard/page/main/section/genre_list_section.dart';
 import 'package:dashboard/page/main/section/movie_list_section.dart';
 import 'package:dashboard/page/main/viewmodel/main_dashboard_viewmodel.dart';
-import 'package:dashboard/page/main/widget/backgrounded_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -42,7 +42,10 @@ class _MainDashboardViewState extends State<MainDashboardView> {
           _firstMoviePart(),
           _genrePart(),
           Gap(context.LargeSpacer),
-          BackgroundedTextField(),
+          Padding(
+            padding: context.MidHorizontalSpacer,
+            child: GlobalFakeTextFieldWidget(),
+          ),
           Gap(context.LargeSpacer),
           _randomMovieWithCategoryTitlePart(),
           Gap(context.LargeSpacer),

@@ -17,6 +17,7 @@ dependencies:
 
   project_x_movie_mobile:
     path: ../../
+
   dio: ^5.3.3
   json_serializable: ^6.6.1
   json_annotation: ^4.8.1

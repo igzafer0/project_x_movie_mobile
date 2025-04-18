@@ -3,4 +3,5 @@ class NavigationConstant {
   static const HOME = '/home';
   static const MOVIE_DETAIL = '/movie_detail';
   static const LOGIN = '/auth/login';
+  static const SEARCH = '/search';
 }

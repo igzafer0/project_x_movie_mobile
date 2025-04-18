@@ -23,6 +23,8 @@ dependencies:
     path: packages/auth
   onboarding:
     path: packages/onboarding
+  search:
+    path: packages/search
   provider: ^6.0.5
 
   #locator

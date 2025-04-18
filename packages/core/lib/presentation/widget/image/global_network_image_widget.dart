@@ -11,6 +11,29 @@ class GlobalNetworkImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imagePath.isNotEmpty && imagePath.startsWith("https://")) {
+      if (imagePath == "https://image.tmdb.org/t/p/original") {
+        return ClipRRect(
+          borderRadius: context.SmallRadius,
+          child: Image.network(
+            "https://placehold.co/133x200/png",
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return Shimmer.fromColors(
+                direction: ShimmerDirection.ltr,
+                period: const Duration(milliseconds: 700),
+                baseColor: ColorConstant.PRIMARY_COLOR,
+                highlightColor: ColorConstant.SECONDARY_COLOR,
+                child: Container(
+                  color: ColorConstant.PRIMARY_COLOR,
+                ),
+              );
+            },
+          ),
+        );
+      }
       return ClipRRect(
         borderRadius: context.SmallRadius,
         child: Image.network(

@@ -1,6 +1,7 @@
 import 'package:core/network/client/remote_client.dart';
 import 'package:core/network/dto/response_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 
@@ -86,6 +87,7 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
       );
       return response;
     } on DioException catch (e) {
+      debugPrint("winter ${e.error}");
       var eresult = ResponseModel<void>.fromJson(e.response?.data, (_) => {});
       return eresult;
     } catch (_) {

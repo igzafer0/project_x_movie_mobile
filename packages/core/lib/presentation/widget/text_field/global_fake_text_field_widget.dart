@@ -1,11 +1,11 @@
 import 'package:core/constant/color_constant.dart';
-import 'package:core/core.dart';
 import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
+import 'package:core/presentation/widget/text/global_label_text_widget.dart';
 import 'package:flutter/material.dart';
 
-class BackgroundedTextField extends StatelessWidget {
-  const BackgroundedTextField({super.key});
+class GlobalFakeTextFieldWidget extends StatelessWidget {
+  const GlobalFakeTextFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class BackgroundedTextField extends StatelessWidget {
         color: ColorConstant.SECONDARY_COLOR,
       ),
       padding: context.MidHorizontalSpacer,
-      margin: context.MidHorizontalSpacer,
       width: context.ScreenWidth,
       child: Row(
         children: [
