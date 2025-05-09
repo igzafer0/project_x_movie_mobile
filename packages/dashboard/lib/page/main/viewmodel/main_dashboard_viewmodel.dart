@@ -25,6 +25,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     _firstMoviePart();
     _getRandomMovieCategoryPriorityPart();
     _getGenreList();
+    _getRecomendation();
   }
 
   @override
@@ -38,6 +39,10 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
 
   @observable
   List<MovieModel> randomMovieWithCategoryPartList = [];
+
+  @observable
+  List<MovieModel> recomendationMovieList = [];
+
   @observable
   List<GenreModel> genreList = [];
   @observable
@@ -47,7 +52,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     description: "",
     poster: "",
     backdrop: "",
-    release: "",
+    release: DateTime.now(),
     genres: [],
     adult: false,
   );
@@ -58,7 +63,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     description: "",
     poster: "",
     backdrop: "",
-    release: "",
+    release: DateTime.now(),
     genres: [],
     adult: false,
   );
@@ -67,6 +72,12 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
     var randomIndex = Random().nextInt(genreList.length);
     var result = await movieUseCase.repository.random(10, [genreList[randomIndex].id]);
     if (result.status) randomMovieWithCategoryPartList = result.data ?? [];
+  }
+
+  @action
+  Future<void> _getRecomendation() async {
+    var result = await movieUseCase.repository.recomendation(50);
+    if (result.status) recomendationMovieList = result.data ?? [];
   }
 
   Future<void> _firstMoviePart() async {
@@ -79,7 +90,7 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
             description: "",
             poster: "",
             backdrop: "",
-            release: "",
+            release: DateTime.now(),
             genres: [],
             adult: false,
           );
@@ -105,8 +116,8 @@ abstract class _MainDashboardViewModelBase with Store, CoreViewModel {
   Future<void> _getRandomMovieCategoryPriorityPart() async {
     var result = await movieUseCase.repository.random(1, []);
     if (result.status) {
-      categoryPriorityMoviePart =
-          result.data?.first ?? MovieModel(id: -1, name: "", description: "", poster: "", backdrop: "", release: "", genres: [], adult: false);
+      categoryPriorityMoviePart = result.data?.first ??
+          MovieModel(id: -1, name: "", description: "", poster: "", backdrop: "", release: DateTime.now(), genres: [], adult: false);
     }
   }
 

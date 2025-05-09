@@ -26,7 +26,7 @@ abstract class _SplashViewModelBase with Store, CoreViewModel {
   Future<void> _getMe() async {
     var result = await onboardingUseCase.me();
     if (result.status) {
-      navigator.navigateToPage(path: NavigationConstant.HOME);
+      navigator.navigateToPageClear(path: NavigationConstant.HOME);
     }
   }
 }

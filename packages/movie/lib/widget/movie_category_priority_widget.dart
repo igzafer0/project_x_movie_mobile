@@ -4,6 +4,7 @@ import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
 import 'package:movie/widget/movie_tile_widget.dart';
 
@@ -35,7 +36,7 @@ class MovieCategoryPriorityWidget extends StatelessWidget {
                 children: [
                   GlobalLabelTextWidget(text: movie.name, size: TextSize.TITLE),
                   Gap(context.SmallSpacer),
-                  GlobalLabelTextWidget(text: movie.release, size: TextSize.SUBTITLE),
+                  GlobalLabelTextWidget(text: DateFormat('yyyy-MM-dd').format(movie.release), size: TextSize.SUBTITLE),
                 ],
               ),
             ),

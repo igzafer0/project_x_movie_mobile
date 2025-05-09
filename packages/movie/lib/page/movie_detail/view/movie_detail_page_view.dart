@@ -1,15 +1,17 @@
 import 'package:core/core.dart';
 import 'package:core/enum/text_size.dart';
 import 'package:core/extension/ui_extension.dart';
-import 'package:core/presentation/core_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:movie/page/movie_detail/view_model/movie_detail_page_viewmodel.dart';
 import 'package:movie/section/movie_list_section.dart';
 import 'package:movie/widget/credit_widget.dart';
+import 'package:movie/widget/genre_widget.dart';
 import 'package:movie/widget/movie_tile_widget.dart';
 import 'package:movie/widget/movie_tile_with_shadow_widget.dart';
+import 'package:intl/intl.dart';
+import 'package:rate/rate.dart';
 
 class MovieDetailPageView extends StatefulWidget {
   final int movieID;
@@ -64,13 +66,17 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
               Gap(context.MidSpacer),
               Padding(
                 padding: context.MidHorizontalSpacer,
-                child: GlobalLabelTextWidget(text: viewModel.movie.release, size: TextSize.SMALL_TITLE),
+                child: GlobalLabelTextWidget(text: DateFormat('yyyy').format(viewModel.movie.release), size: TextSize.SMALL_TITLE),
               ),
               Gap(context.MidSpacer),
               Padding(
                 padding: context.MidHorizontalSpacer,
                 child: GlobalLabelTextWidget(text: viewModel.movie.description, size: TextSize.SUBTITLE),
               ),
+              Gap(context.MidSpacer),
+              _starPart(),
+              Gap(context.MidSpacer),
+              _genrePart(),
               Gap(context.MidSpacer),
               _castSection(),
               _similarMoviePart(),
@@ -81,6 +87,23 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
         }
         return const SizedBox.shrink();
       }),
+    );
+  }
+
+  Widget _genrePart() {
+    return Padding(
+      padding: context.MidHorizontalSpacer,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GlobalLabelTextWidget(
+            text: "Genres",
+            size: TextSize.BIG_TITLE,
+          ),
+          Gap(context.MidSpacer),
+          Wrap(spacing: 8.0, runSpacing: 4.0, children: viewModel.movie.genres.map((e) => GenreWidget(name: e.name)).toList()),
+        ],
+      ),
     );
   }
 
@@ -138,5 +161,39 @@ class _MovieDetailPageViewState extends State<MovieDetailPageView> {
         ],
       );
     });
+  }
+
+  _starPart() {
+    return Padding(
+      padding: context.MidHorizontalSpacer,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GlobalLabelTextWidget(
+            text: "Rate Movie",
+            size: TextSize.BIG_TITLE,
+          ),
+          Gap(context.MidSpacer),
+          Center(
+            child: Observer(builder: (context) {
+              return Rate(
+                iconSize: 42,
+                color: Colors.amber,
+                allowHalf: true,
+                allowClear: false,
+                initialValue: viewModel.movieRate,
+                readOnly: false,
+                onChange: (value) => viewModel.movieRate = value,
+              );
+            }),
+          ),
+          Gap(context.MidSpacer),
+          GlobalLabelTextWidget(
+              text: "You can make the movies we recommend to you sharper by giving a rate to the movies you watch.", size: TextSize.SUBTITLE),
+          Gap(context.MidSpacer),
+          GlobalCommonButtonWidget(onTap: () => viewModel.setRate(), title: "Send")
+        ],
+      ),
+    );
   }
 }

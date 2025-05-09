@@ -5,4 +5,7 @@ abstract class MovieRepository {
   Future<ResponseModel> detail(int movieID);
   Future<ResponseModel> credit(int movieID);
   Future<ResponseModel> similar(int movieID, int limit);
+  Future<ResponseModel> getRate(int movieID);
+  Future<ResponseModel> setRate(int movieID, double rate);
+  Future<ResponseModel> recomendation(int limit);
 }

@@ -1,6 +1,7 @@
 import 'package:core/network/dto/response_model.dart';
 import 'package:movie/data/model/credit/credit_model.dart';
 import 'package:movie/data/model/movie/movie_model.dart';
+import 'package:movie/data/model/rate/rate_model.dart';
 import 'package:movie/data/repository/movie_repository.dart';
 
 class MovieUseCase {
@@ -11,6 +12,15 @@ class MovieUseCase {
     limit = limit ?? 1;
     genres = genres ?? [];
     var result = await repository.random(limit, genres);
+    if (result.status) {
+      return result as ResponseModel<List<MovieModel>>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
+  }
+
+  Future<ResponseModel<List<MovieModel>>> recomendation({int? limit}) async {
+    limit = limit ?? 1;
+    var result = await repository.recomendation(limit);
     if (result.status) {
       return result as ResponseModel<List<MovieModel>>;
     }
@@ -38,6 +48,22 @@ class MovieUseCase {
     var result = await repository.similar(movieID, limit);
     if (result.status) {
       return result as ResponseModel<List<MovieModel>>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
+  }
+
+  Future<ResponseModel<RateModel>> getRate(int movieID) async {
+    var result = await repository.getRate(movieID);
+    if (result.status) {
+      return result as ResponseModel<RateModel>;
+    }
+    return ResponseModel(status: result.status, message: result.message);
+  }
+
+  Future<ResponseModel> setRate(int movieID, double rate) async {
+    var result = await repository.setRate(movieID, rate);
+    if (result.status) {
+      return result;
     }
     return ResponseModel(status: result.status, message: result.message);
   }

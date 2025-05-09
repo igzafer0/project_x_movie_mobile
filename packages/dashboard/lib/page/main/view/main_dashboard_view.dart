@@ -47,6 +47,8 @@ class _MainDashboardViewState extends State<MainDashboardView> {
             child: GlobalFakeTextFieldWidget(),
           ),
           Gap(context.LargeSpacer),
+          _recomendationPart(),
+          Gap(context.LargeSpacer),
           _randomMovieWithCategoryTitlePart(),
           Gap(context.LargeSpacer),
           _randomMovieCategoryPriorityPart(),
@@ -54,6 +56,31 @@ class _MainDashboardViewState extends State<MainDashboardView> {
         ],
       ),
     );
+  }
+
+  Widget _recomendationPart() {
+    return Observer(builder: (_) {
+      if (viewModel.recomendationMovieList.isNotEmpty) {
+        return Padding(
+          padding: context.MidHorizontalSpacer,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GlobalLabelTextWidget(
+                text: "For your taste",
+                size: TextSize.BIG_TITLE,
+              ),
+              Gap(context.LargeSpacer),
+              SizedBox(
+                height: 200,
+                child: MovieListSection(viewModel.recomendationMovieList, (i) => viewModel.navigateDetailPage(i)),
+              ),
+            ],
+          ),
+        );
+      }
+      return const SizedBox.shrink();
+    });
   }
 
   Widget _randomMovieWithCategoryTitlePart() {

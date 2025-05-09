@@ -27,6 +27,24 @@ mixin _$MainDashboardViewModel on _MainDashboardViewModelBase, Store {
     });
   }
 
+  late final _$recomendationMovieListAtom = Atom(
+      name: '_MainDashboardViewModelBase.recomendationMovieList',
+      context: context);
+
+  @override
+  List<MovieModel> get recomendationMovieList {
+    _$recomendationMovieListAtom.reportRead();
+    return super.recomendationMovieList;
+  }
+
+  @override
+  set recomendationMovieList(List<MovieModel> value) {
+    _$recomendationMovieListAtom
+        .reportWrite(value, super.recomendationMovieList, () {
+      super.recomendationMovieList = value;
+    });
+  }
+
   late final _$genreListAtom =
       Atom(name: '_MainDashboardViewModelBase.genreList', context: context);
 
@@ -87,10 +105,20 @@ mixin _$MainDashboardViewModel on _MainDashboardViewModelBase, Store {
         .run(() => super._getRandomMovieWithCategoryPart());
   }
 
+  late final _$_getRecomendationAsyncAction = AsyncAction(
+      '_MainDashboardViewModelBase._getRecomendation',
+      context: context);
+
+  @override
+  Future<void> _getRecomendation() {
+    return _$_getRecomendationAsyncAction.run(() => super._getRecomendation());
+  }
+
   @override
   String toString() {
     return '''
 randomMovieWithCategoryPartList: ${randomMovieWithCategoryPartList},
+recomendationMovieList: ${recomendationMovieList},
 genreList: ${genreList},
 firstMoviePart: ${firstMoviePart},
 categoryPriorityMoviePart: ${categoryPriorityMoviePart}

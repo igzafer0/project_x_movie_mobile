@@ -57,6 +57,22 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     });
   }
 
+  late final _$movieRateAtom =
+      Atom(name: '_MovieDetailPageViewModelBase.movieRate', context: context);
+
+  @override
+  double get movieRate {
+    _$movieRateAtom.reportRead();
+    return super.movieRate;
+  }
+
+  @override
+  set movieRate(double value) {
+    _$movieRateAtom.reportWrite(value, super.movieRate, () {
+      super.movieRate = value;
+    });
+  }
+
   late final _$getDetailAsyncAction =
       AsyncAction('_MovieDetailPageViewModelBase.getDetail', context: context);
 
@@ -87,7 +103,8 @@ mixin _$MovieDetailPageViewModel on _MovieDetailPageViewModelBase, Store {
     return '''
 movie: ${movie},
 credit: ${credit},
-similarMovieList: ${similarMovieList}
+similarMovieList: ${similarMovieList},
+movieRate: ${movieRate}
     ''';
   }
 }

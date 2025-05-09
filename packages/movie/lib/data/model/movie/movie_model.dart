@@ -16,7 +16,7 @@ final class MovieModel {
   @JsonKey(name: "description")
   String description;
   @JsonKey(name: "release")
-  String release;
+  DateTime release;
   @JsonKey(name: "adult")
   bool adult;
   @JsonKey(name: "genres", defaultValue: [])

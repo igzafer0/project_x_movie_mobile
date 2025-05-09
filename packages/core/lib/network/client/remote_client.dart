@@ -12,9 +12,9 @@ class RemoteClient {
     final client = Dio(
       BaseOptions(
         validateStatus: (status) => status == 200 || status == 204,
-        connectTimeout: const Duration(seconds: 5),
-        sendTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 5),
+        connectTimeout: const Duration(minutes: 1),
+        sendTimeout: const Duration(minutes: 1),
+        receiveTimeout: const Duration(minutes: 1),
         baseUrl: "https://movie.zafercetin.dev",
         headers: {"Authorization": "Bearer ${auth.getToken()?.access}"},
       ),
